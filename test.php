@@ -12,9 +12,9 @@ $arr=array(
 //Response::xmlEncode(200, 'sucess', $arr);
 //Response::show(200, 'sucess', $arr,'xml');
 $file=new Cache();
-if($file->cacheData('cache',null,'test')){
-    //var_dump($file->cacheData('cache','','test'));
-    echo "success";
+if($file->cacheData('cache','sjfjsjsjfj',180)){
+    var_dump($file->cacheData('cache'));
+    //echo "success";
 }else{
     echo "error";
 }

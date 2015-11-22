@@ -11,9 +11,9 @@ class Cache{
      * @param type $value 要写入的值
      * @param type $path 路径
      */
-    public function cacheData($key,$value='',$path=''){
+    public function cacheData($key,$value='',$cacheTime=0){
        
-        $filename=$this->dir.$path.$key.self::EXT;
+        $filename=$this->dir.$key.self::EXT;
         if($value!==''){//将value 值写入缓存
              if(is_null($value)){//删除文件
             return @unlink($filename); //添加@防止不存在的时候返回false;
@@ -22,13 +22,22 @@ class Cache{
             if(!is_dir($dir)){
                 mkdir($dir, 0777);
             }
-           return file_put_contents($filename, json_encode($value));
+            $cacheTime=  sprintf("%011d",$cacheTime);
+           return file_put_contents($filename, $cacheTime.json_encode($value));
         }
         if(!is_file($filename)){
             return false;
-        }else{
-            return json_decode(file_get_contents($filename),true);
         }
+        $contents=  file_get_contents($filename);
+        $cacheTime=(int)  substr($contents,0,11);
+        $value=substr($contents,11);
+        if($cacheTime!=0 &&($cacheTime +  filemtime($filename))<time()){
+            unlink($filename);
+            return false;
+          
+        }
+            return json_decode($value,true);
+        
     }
 }
 
