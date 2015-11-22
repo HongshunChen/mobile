@@ -12,7 +12,7 @@ $arr=array(
 //Response::xmlEncode(200, 'sucess', $arr);
 //Response::show(200, 'sucess', $arr,'xml');
 $file=new Cache();
-if($file->cacheData('cache','sjfjsjsjfj',180)){
+if($file->cacheData('cache')){
     var_dump($file->cacheData('cache'));
     //echo "success";
 }else{
