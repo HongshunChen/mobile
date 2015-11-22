@@ -1,5 +1,5 @@
 <?php
-class File{
+class Cache{
     private $dir='';
     const EXT='.txt'; //文件后缀
     public function __construct(){
