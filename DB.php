@@ -34,7 +34,8 @@ class DB {
         if (!self::$connectSourse) {
             self::$connectSourse = mysql_connect($this->DBConfig['host'], $this->DBConfig['user'], $this->DBConfig['password']);
             if (!self::$connectSourse) {
-                die('mysql connect error' . mysql_error());
+                //die('mysql connect error' . mysql_error());
+                throw new Exception('mysql connect error' . mysql_error());
             }
             mysql_select_db($this->DBConfig['database'], self::$connectSourse);
             mysql_query('set names utf8', self::$connectSourse);
