@@ -4,6 +4,20 @@
 require_once './DB.php';
 require_once'./Response.php';
 require_once'./Cache.php';
+
+//直接从缓存中获取
+$cache=new Cache();
+$rows=$cache->cacheData('index_cron_cahce');
+//var_dump($rows);
+if ($rows) {
+    return Response::show(200, '首页获取数据成功', $rows);
+} else {
+    return Response::show(400, '首页数据获取失败');
+}
+
+exit;
+
+//数据库中获取或缓存获取
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $pageSize = isset($_GET['pageSize']) ? $_GET['pageSize'] : 1;
