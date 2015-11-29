@@ -1,6 +1,6 @@
 <?php
 
-//http://app.com/list.php?page=1&pagesize=12
+//http://localhost/mobile/list.php?page=1&pageSize=12
 require_once './DB.php';
 require_once'./Response.php';
 require_once'./Cache.php';

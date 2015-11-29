@@ -26,9 +26,9 @@ class Response{
            self::json($code, $message, $data);
            exit;
        }elseif($type=='array'){
-           var_dump($result);
+           print_r($result);
        }elseif($type=='xml'){
-           self::xmlEncode($code, $message, $data);
+           self::xml($code, $message, $data);
            exit;
        }else{
            //.....
@@ -61,7 +61,7 @@ class Response{
      * @return string xml格式数据
      * 
      */
-    public static function xmlEncode($code,$message,$data=array()){
+    public static function xml($code,$message,$data=array()){
         if(!is_numeric($code)){
             return'';
         }
@@ -77,6 +77,12 @@ class Response{
         $xml.="</root>";
         echo $xml;
     }
+    /**
+     * 将数组转换成xml格式
+     * @author DOIT
+     * @param array $data
+     * @return string
+     */
     public static function xmlToEncode($data){
         $xml=$attr='';
         foreach ($data as $key => $value) {

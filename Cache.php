@@ -1,4 +1,5 @@
 <?php
+
 class Cache{
     private $dir='';
     const EXT='.txt'; //文件后缀
@@ -16,7 +17,7 @@ class Cache{
         $filename=$this->dir.$key.self::EXT;
         if($value!==''){//将value 值写入缓存
              if(is_null($value)){//删除文件
-            return @unlink($filename); //添加@防止不存在的时候返回false;
+            return @unlink($filename); //添加@防止不存在的时候返回false产生E_WARNING;
         }
             $dir=  dirname($filename);
             if(!is_dir($dir)){
