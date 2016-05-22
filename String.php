@@ -32,7 +32,7 @@ class String {
        while($chars<$len && $offset<$length){//只要还没有截取到$len长度就继续进行
            $high=  decbin(ord(substr($str, $offset, 1))); //取出每个字符的第一个字节转换成->十进制->二进制 进行判断高位字节
           // echo $high.'<br/>';
-           if(strlen($high)<8){
+           if(strlen($high)<8){//前面有0少于8位
                //截取1个字节
                $count=1;
            }else if(substr($high,0,3)=='110'){    //用字符串来判断，效率不高。使用位运算效果会更好

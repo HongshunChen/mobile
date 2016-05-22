@@ -16,21 +16,30 @@ class DB {
         'database' => 'ots'
     );
 
-    private function __construct() {
+    private function __construct()
+        {
         
-    }
+        }
 
-    static public function getInstance() {     //单例模式使用
+    private function __clone()
+        {
+       //do something 
+        }
+
+    static public function getInstance()
+        {     //单例模式使用
         if (!(self::$instance instanceof self)) {
             self::$instance = new self();
         }
         return self::$instance;
-    }
-/**
- * 
- * @return type
- */
-    public function connect() {
+        }
+
+    /**
+     * 
+     * @return type
+     */
+    public function connect()
+        {
         if (!self::$connectSourse) {
             self::$connectSourse = mysql_connect($this->DBConfig['host'], $this->DBConfig['user'], $this->DBConfig['password']);
             if (!self::$connectSourse) {
@@ -42,9 +51,10 @@ class DB {
         }
 
         return self::$connectSourse;
-    }
+        }
 
 }
+
 //$connect=DB::getInstance()->connect();
 //var_dump($connect);
 //
